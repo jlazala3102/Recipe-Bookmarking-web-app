@@ -3,9 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
-import Services from './components/pages/Services';
-import Products from './components/pages/Products';
 import SignUp from './components/pages/SignUp';
+import RecipePage from './components/pages/RecipePage'; // Correct the path
 
 function App() {
   return (
@@ -13,10 +12,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' exact element={<Home />}> </Route>
-          <Route path='/services'  element={<Services />}> </Route>
-          <Route path='/products'  element={<Products />}> </Route>
-          <Route path='/sign-up'  element={<SignUp />}> </Route>
+          <Route path='/' exact element={<Home />} />
+          <Route path="/recipe-page" element={<RecipePage />} />
+          <Route path='/sign-up' element={<SignUp />} />
         </Routes>
       </Router>
     </>
