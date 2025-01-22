@@ -1,11 +1,22 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../../App.css";
 
 export default function RecipePage() {
-    const location = useLocation(); // Access state from navigation
-    const { recipes, query } = location.state || {}; // Destructure state
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { recipes = [], query = "" } = location.state || {};
     const hasRecipes = recipes && recipes.length > 0;
+
+    const handleRecipeClick = (recipe) => {
+        navigate(`/recipe/${recipe.id}`);
+    };
+
+    if (!location.state) {
+        return <div className="recipe-page-container">
+            <p>No recipe data available. Please search for recipes first.</p>
+        </div>;
+    }
 
     return (
         <div className="recipe-page-container">
@@ -21,7 +32,13 @@ export default function RecipePage() {
                                 alt={recipe.title}
                                 className="recipe-img"
                             />
-                            <h3>{recipe.title}</h3>
+                            <h3 
+                                onClick={() => handleRecipeClick(recipe)}
+                                style={{ cursor: 'pointer' }}
+                                className="recipe-title"
+                            >
+                                {recipe.title}
+                            </h3>
                         </div>
                     ))}
                 </div>
