@@ -25,6 +25,13 @@ function HeroSection() {
         }
     };
 
+    // Add handler for enter key
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     return (
         <div className="hero-container">
             <video src="/videos/video-2.mp4" autoPlay loop muted />
@@ -36,6 +43,7 @@ function HeroSection() {
                     placeholder="e.g., chicken, rice"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={handleKeyPress}
                     className="search-input"
                 />
             </div>
