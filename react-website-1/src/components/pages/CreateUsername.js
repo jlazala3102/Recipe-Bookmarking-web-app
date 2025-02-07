@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import "./CreateUsername.css";
 import { db } from '../../utils/firebase';
 import { doc, setDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
-export default function CreateUsername() {
+export default function CreateUsername({ setIsCreatingUsername }) {
     const [username, setUsername] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { currentUser } = useAuth();
+
+    useEffect(() => {
+        setIsCreatingUsername(true); // Set to true when this component mounts
+        return () => setIsCreatingUsername(false); // Reset when unmounting
+    }, [setIsCreatingUsername]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,6 +31,7 @@ export default function CreateUsername() {
 
             await saveUsername(currentUser.uid, username);
             navigate('/');
+            window.location.reload();
         } catch (error) {
             setError('Failed to create username. Please try again.');
         } finally {
@@ -78,7 +84,7 @@ export default function CreateUsername() {
                     placeholder="Enter username"
                     minLength={3}
                     maxLength={20}
-                    pattern="^[a-zA-Z0-9_]+$"
+                    pattern="^[a-zA-Z0-9_.]+$"
                     required
                 />
                 <button 

@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import './Navbar.css';
 import { Button } from './Button';
 
-function Navbar() {
+function Navbar({ isDisabled }) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
     const [dropdown, setDropdown] = useState(false);
@@ -45,7 +45,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="navbar">
+            <nav className={`navbar ${isDisabled ? 'navbar-disabled' : ''}`}>
                 <div className='navbar-container'>
                     <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>
                         TRVL <i className='fab fa-typo3' />

@@ -18,12 +18,12 @@ import {
 
 // Your Firebase configuration (get this from Firebase Console)
 const firebaseConfig = {
-    apiKey: "AIzaSyAev2zzmT3JFhwEzjbZdxTk0v9cXfhJf2o",
-    authDomain: "react-recipe-website-f0912.firebaseapp.com",
-    projectId: "react-recipe-website-f0912",
-    storageBucket: "react-recipe-website-f0912.firebasestorage.app",
-    messagingSenderId: "844166956566",
-    appId: "1:844166956566:web:2e88dd5dd0af669858d737",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
@@ -84,4 +84,29 @@ export const saveUsername = async (uid, username) => {
     } catch (error) {
         throw error;
     }
-}; 
+};
+
+export const saveVerificationCode = async (email, code) => {
+    try {
+        console.log(`Saving verification code for ${email}: ${code}`); // Log the email and code
+        await db.collection('verificationCodes').doc(email).set({ code });
+        console.log("Verification code saved successfully."); // Log success
+    } catch (error) {
+        console.error("Error saving verification code:", error);
+        throw error; // Rethrow the error to handle it in the calling function
+    }
+};
+
+// Save user email to Firestore
+export const saveUserEmail = async (uid, email) => {
+    try {
+        const userRef = doc(db, 'users', uid);
+        await setDoc(userRef, {
+            email: email,
+            createdAt: new Date(),
+        }, { merge: true }); // merge: true will update existing doc or create new one
+    } catch (error) {
+        console.error('Error saving user email:', error);
+        throw error;
+    }
+};
