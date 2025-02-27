@@ -10,16 +10,16 @@
 
 .bookmarks-page-container li {
     margin: 10px 0;
-    font-size: 18px; /* Adjust font size as needed */
+    font-size: 18px;
 }
 
 .bookmarks-page-container a {
     text-decoration: none;
-    color: #007bff; /* Link color */
+    color: #007bff;
 }
 
 .bookmarks-page-container a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
 
 .bookmarks-list {
@@ -30,27 +30,27 @@
 
 .bookmark-item {
     margin: 10px;
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 200px; /* Set a fixed width */
-    text-align: left; /* Align text to the left */
-    overflow: hidden; /* Hide overflow */
-    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .bookmark-item:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-    background-color: #f9f9f9; /* Optional: Change background color on hover */
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
 }
 
 .bookmark-image {
-    width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    height: auto;
 }
 
 .bookmark-item h2 {
-    font-size: 16px; /* Adjust font size as needed */
-    margin: 10px; /* Add margin */
+    font-size: 16px;
+    margin: 10px;
 } 

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { searchRecipesByCuisine, fetchRecipesByIngredients } from "../../utils/api";
 import "../../App.css";
 import "./RecipePage.css";
 
@@ -9,9 +9,38 @@ export default function RecipePage() {
     const navigate = useNavigate();
     const { recipes = [], query = "" } = location.state || {};
     const hasRecipes = recipes && recipes.length > 0;
+    const [queryState, setQueryState] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleRecipeClick = (recipe) => {
         navigate(`/recipe/${recipe.id}`);
+    };
+
+    const handleSearch = async () => {
+        if (!queryState.trim()) return;
+        setLoading(true);
+        setError(null);
+        try {
+            const recipes = await searchRecipesByCuisine(queryState);
+            if (recipes.length === 0) {
+                const ingredientRecipes = await fetchRecipesByIngredients(queryState);
+                navigate("/recipe-page", { state: { recipes: ingredientRecipes, query: queryState } });
+            } else {
+                navigate("/recipe-page", { state: { recipes, query: queryState } });
+            }
+        } catch (err) {
+            console.error("Failed to fetch recipes:", err);
+            setError("Failed to fetch recipes. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
     };
 
     if (!location.state) {
@@ -22,8 +51,18 @@ export default function RecipePage() {
 
     return (
         <div className="recipe-page-container">
+            <div className="search-container" style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <input
+                    type="text"
+                    placeholder="Search for recipes..."
+                    value={queryState}
+                    onChange={(e) => setQueryState(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                    className="search-input"
+                />
+            </div>
             <h1 className="recipe-page">Recipes for "{query}"</h1>
-
+            {error && <p className="error-message">{error}</p>}
             {/* Display Recipes */}
             {hasRecipes ? (
                 <div className="recipe-results">

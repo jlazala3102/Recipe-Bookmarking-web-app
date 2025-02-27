@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import './Navbar.css';
-import { Button } from './Button';
 
 function Navbar({ isDisabled }) {
     const [click, setClick] = useState(false);
@@ -61,11 +60,13 @@ function Navbar({ isDisabled }) {
                                 Home
                             </Link>
                         </li>
-                        <li className='nav-item'>
-                            <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-                                Sign Up
-                            </Link>
-                        </li>
+                        {!currentUser && (
+                            <li className='nav-item'>
+                                <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
+                                    Sign Up
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                     <div className='nav-auth'>
                         {currentUser ? (

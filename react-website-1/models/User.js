@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
-    profilePicture: {  // Optional: store Google profile picture URL
+    profilePicture: {
         type: String
     },
     bookmarks: [{

@@ -3,22 +3,25 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 const mongoose = require('mongoose');
 
+// Serialize user information into the session
 passport.serializeUser((user, done) => {
     console.log('Serializing user:', user);
-    done(null, user.id);
+    done(null, user.id); // Store user ID in session
 });
 
+// Deserialize user information from the session
 passport.deserializeUser(async (id, done) => {
     try {
         console.log('Deserializing user ID:', id);
-        const user = await User.findById(id);
-        done(null, user);
+        const user = await User.findById(id); // Find user by ID
+        done(null, user); // Pass user to the next middleware
     } catch (error) {
         console.error('Deserialize error:', error);
-        done(error, null);
+        done(error, null); // Handle error
     }
 });
 
+// Configure Google OAuth strategy
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -35,14 +38,14 @@ async (accessToken, refreshToken, profile, done) => {
             lastName: profile.name?.familyName
         });
 
-        let user = await User.findOne({ googleId: profile.id });
+        let user = await User.findOne({ googleId: profile.id }); // Check if user already exists
         
         if (user) {
             console.log('Existing user found:', user);
-            return done(null, user);
+            return done(null, user); // User exists, proceed
         }
 
-        // If user doesn't exist, create new user
+        // If user doesn't exist, create a new user
         user = new User({
             googleId: profile.id,
             email: profile.emails?.[0]?.value,
@@ -53,17 +56,17 @@ async (accessToken, refreshToken, profile, done) => {
         });
 
         console.log('Creating new user:', user);
-        await user.save();
+        await user.save(); // Save new user to the database
         console.log('New user saved successfully');
-        return done(null, user);
+        return done(null, user); // Return the new user
 
     } catch (error) {
         console.error('Google Strategy Error:', error);
-        return done(error, null);
+        return done(error, null); // Handle error
     }
 }));
 
-// Test MongoDB connection
+// MongoDB connection event handlers
 mongoose.connection.on('error', err => {
     console.error('MongoDB connection error:', err);
 });
@@ -72,4 +75,4 @@ mongoose.connection.on('connected', () => {
     console.log('MongoDB connected successfully');
 });
 
-module.exports = passport; 
+module.exports = passport; // Export the configured passport 

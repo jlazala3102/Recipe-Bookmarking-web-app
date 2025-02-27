@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import './BookmarksPage.css'; // Optional: Create a CSS file for styling
+import './BookmarksPage.css'; 
 
 const BookmarksPage = () => {
     const { currentUser } = useAuth();

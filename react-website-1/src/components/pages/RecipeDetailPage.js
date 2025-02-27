@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { fetchRecipeDetails } from "../../utils/api";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchRecipeDetails, searchRecipesByCuisine, fetchRecipesByIngredients } from "../../utils/api";
 import { useAuth } from "../../contexts/AuthContext"; // Import useAuth
 import "../../App.css";
 import "./RecipeDetailPage.css"; // Import the CSS file
@@ -11,6 +11,9 @@ export default function RecipeDetailPage() {
     const [recipe, setRecipe] = useState(null);
     const [loading, setLoading] = useState(true);
     const [bookmarkedRecipes, setBookmarkedRecipes] = useState([]); // State for bookmarked recipes
+    const [query, setQuery] = useState(""); // State for search query
+    const [error, setError] = useState(null); // State for error handling
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loadRecipe = async () => {
@@ -77,6 +80,33 @@ export default function RecipeDetailPage() {
         }
     };
 
+    const handleSearch = async () => {
+        if (!query.trim()) return; // Prevent empty searches
+        setLoading(true); // Set loading state
+        setError(null); // Reset error state
+        try {
+            const recipes = await searchRecipesByCuisine(query); // Fetch recipes by query
+            if (recipes.length === 0) {
+                const ingredientRecipes = await fetchRecipesByIngredients(query);
+                navigate("/recipe-page", { state: { recipes: ingredientRecipes, query } }); // Navigate with ingredient results
+            } else {
+                navigate("/recipe-page", { state: { recipes, query } }); // Navigate with cuisine results
+            }
+        } catch (err) {
+            console.error("Failed to fetch recipes:", err);
+            setError("Failed to fetch recipes. Please try again.");
+        } finally {
+            setLoading(false); // Reset loading state
+        }
+    };
+
+    // Add handler for enter key
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
     if (loading) {
         return <div className="recipe-page-container">Loading...</div>;
     }
@@ -87,6 +117,16 @@ export default function RecipeDetailPage() {
 
     return (
         <div className="recipe-page-container">
+            <div className="search-container" style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <input
+                    type="text"
+                    placeholder="Search for recipes..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                    className="search-input"
+                />
+            </div>
             <div className="recipe-detail">
                 <h1>{recipe.title}</h1>
                 <img src={recipe.image} alt={recipe.title} className="recipe-img" />

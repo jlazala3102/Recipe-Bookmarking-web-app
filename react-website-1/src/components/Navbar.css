@@ -10,12 +10,9 @@
   z-index: 999;
 }
 
-/* src/components/Navbar.css */
 .navbar-disabled {
   pointer-events: none;
-  /* Disable all interactions */
   opacity: 0.5;
-  /* Optional: make it look disabled */
 }
 
 .navbar-container {
@@ -92,16 +89,17 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90vh;
+    height: auto;
+    padding: 20px;
     position: absolute;
     top: 80px;
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+    background: #242222;
   }
 
   .nav-menu.active {
-    background: #242222;
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -122,10 +120,10 @@
   }
 
   .navbar-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
+    font-size: 30px;
+    margin-right: 50px;
+    align-self: self-start;
+    transform: translate(0, 50%);
   }
 
   .menu-icon {
@@ -168,65 +166,67 @@
 /* Dropdown Menu Styles */
 .dropdown-menu {
   position: absolute;
-  background-color: rgba(28, 27, 27, 0.95); /* Match the navbar background */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow for depth */
-  z-index: 1000; /* Ensure it appears above other elements */
-  margin-top: 15px; /* Space between the button and dropdown */
-  right: 90px; /* Move the dropdown left to be closer to the button */
-  width: 200px; /* Fixed width for consistency */
-  padding: 5px 0; /* Padding for the dropdown */
+  background-color: rgba(28, 27, 27, 0.95); 
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+  z-index: 1000; 
+  margin-top: 15px; 
+  right: 90px; 
+  width: 200px; 
+  padding: 10px 0; 
+  align-self: start;
   text-align: center;
   text-decoration: none;
 }
 
 /* Dropdown Item Styles */
 .dropdown-item {
-  color: #fff; /* White text for contrast */
-  padding: 10px 15px; /* Padding for better click area */
-  text-decoration: none; /* Remove underline */
-  text-align: center; /* Align text to the left */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
-  cursor: pointer; /* Pointer cursor */
-  font-size: 16px; /* Font size */
-  border: none; /* Remove border */
-  background: none; /* No background */
+  color: #fff; 
+  padding: 10px 15px;
+  text-decoration: none; 
+  text-align: center; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  cursor: pointer; 
+  font-size: 16px; 
+  border: none; 
+  background: none; 
 }
 
 /* Hover Effect for Dropdown Items */
 .dropdown-item:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Change background on hover */
-  color: #fff; /* Keep text color white on hover */
+  background-color: rgba(255, 255, 255, 0.1); 
+  color: #fff;
 }
 
 /* Additional Styling for the Username Button */
 .username-btn {
-  background: none; /* No background */
-  border: none; /* No border */
-  color: #fff; /* White text */
-  font-size: 25px; /* Font size */
-  cursor: pointer; /* Pointer cursor */
-  padding: 10px; /* Padding for better click area */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  background: none; 
+  display: flex;
+  border: none; 
+  color: #fff; 
+  font-size: 25px; 
+  cursor: pointer; 
+  padding: 10px; 
+  transition: background-color 0.3s ease; 
 }
 
 .username-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
-  border-radius: 4px; /* Slightly rounded corners on hover */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px; 
 }
 
 /* Common button styles */
 .common-button {
-    background: none; /* No background */
-    border: none; /* No border */
-    color: #fff; /* White text */
-    font-size: 18px; /* Font size */
-    cursor: pointer; /* Pointer cursor */
-    padding: 10px; /* Padding for better click area */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    background: none; 
+    border: none; 
+    color: #fff; 
+    font-size: 18px; 
+    cursor: pointer; 
+    padding: 10px; 
+    transition: background-color 0.3s ease; 
 }
 
 .common-button:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
-    border-radius: 4px; /* Slightly rounded corners on hover */
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 4px; 
 }

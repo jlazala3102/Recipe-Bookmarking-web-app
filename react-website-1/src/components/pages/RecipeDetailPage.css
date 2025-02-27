@@ -1,57 +1,57 @@
 .recipe-page-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-    text-align: center; /* Center text */
+    text-align: center;
 }
 
 .recipe-detail {
-    max-width: 600px; /* Limit width for better readability */
-    margin: 20px; /* Add margin */
+    max-width: 600px;
+    margin: 20px;
     padding: 20px;
-    border: 1px solid #ccc; /* Add a border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-img {
-    max-width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%;
+    height: auto;
 }
 
 .bookmark-container {
-    position: relative; /* Position relative for tooltip */
-    display: inline-block; /* Inline block for tooltip positioning */
+    position: relative;
+    display: inline-block;
 }
 
 .tooltip {
-    visibility: hidden; /* Hidden by default */
-    width: 80px; /* Width of the tooltip */
-    background-color: black; /* Background color */
-    color: #fff; /* Text color */
-    text-align: center; /* Center text */
-    border-radius: 5px; /* Rounded corners */
-    padding: 5px; /* Padding */
-    position: absolute; /* Position absolute */
-    z-index: 1; /* On top of other elements */
-    bottom: 125%; /* Position above the button */
-    left: 50%; /* Center horizontally */
-    margin-left: -40px; /* Adjust for centering */
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.3s; /* Fade effect */
+    visibility: hidden;
+    width: 80px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -40px;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .bookmark-button:hover + .tooltip {
-    visibility: visible; /* Show tooltip on hover */
-    opacity: 1; /* Fade in */
+    visibility: visible;
+    opacity: 1;
 }
 
 .bookmark-button {
     background: none;
     border: none;
     cursor: pointer;
-    color: red; /* Change color as needed */
-    font-size: 1.5em; /* Adjust size as needed */
+    color: red;
+    font-size: 1.5em;
 } 
