@@ -1,45 +1,58 @@
 import React from 'react';
 import './Cards.css';
 import CardItem from './CardItem';
+import { useNavigate } from 'react-router-dom';
+import { searchRecipesByCuisine } from '../utils/api';
 
 function Cards() {
+  const navigate = useNavigate();
+
+  const handleCuisineSearch = async (cuisine) => {
+    try {
+      const recipes = await searchRecipesByCuisine(cuisine); // Pass the cuisine directly
+      navigate("/recipe-page", { state: { recipes, query: cuisine } }); // Navigate with cuisine results
+    } catch (error) {
+      console.error('Error fetching recipes:', error);
+    }
+  };
+
   return (
     <div className='cards'>
-      <h1>Check out these EPIC Destinations!</h1>
+      <h1>Check out these EPIC Cuisines!</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              src='images/img-9.jpg'
-              text='Explore the hidden waterfall deep inside the Amazon Jungle'
-              label='Adventure'
-              path='/services'
+              src='images/mex.jpg'
+              text='Explore the flavors of Mexican cuisine'
+              label='Mexican'
+              onClick={() => handleCuisineSearch('Mexican')}
             />
             <CardItem
-              src='images/img-2.jpg'
-              text='Travel through the Islands of Bali in a Private Cruise'
-              label='Luxury'
-              path='/services'
+              src='images/italian.png'
+              text='Indulge in the richness of Italian dishes'
+              label='Italian'
+              onClick={() => handleCuisineSearch('Italian')}
             />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='images/img-3.jpg'
-              text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-              label='Mystery'
-              path='/services'
+              src='images/indian.jpeg'
+              text='Discover the spices of Indian cuisine'
+              label='Indian'
+              onClick={() => handleCuisineSearch('Indian')}
             />
             <CardItem
-              src='images/img-4.jpg'
-              text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
-              path='/products'
+              src='images/mediterranian.jpg'
+              text='Savor the freshness of Mediterranean flavors'
+              label='Mediterranean'
+              onClick={() => handleCuisineSearch('Mediterranean')}
             />
             <CardItem
-              src='images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
-              path='/sign-up'
+              src='images/thai.jpg'
+              text='Experience the unique tastes of Thai cuisine'
+              label='Thai'
+              onClick={() => handleCuisineSearch('Thai')}
             />
           </ul>
         </div>

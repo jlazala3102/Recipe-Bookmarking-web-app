@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchRecipeDetails } from "../../utils/api";
 import "../../App.css";
+import "./RecipeDetailPage.css"; // Import the CSS file
 
 export default function RecipeDetailPage() {
     const { id } = useParams();

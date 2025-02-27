@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../App.css";
+import "./RecipePage.css";
 
 export default function RecipePage() {
     const location = useLocation();

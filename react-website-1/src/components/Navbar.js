@@ -26,7 +26,7 @@ function Navbar({ isDisabled }) {
     useEffect(() => {
         showButton();
         if (currentUser) {
-            setUsername(currentUser.username || currentUser.email);
+            setUsername(currentUser.firstName || currentUser.email);
         } else {
             setUsername(null);
         }
@@ -34,12 +34,14 @@ function Navbar({ isDisabled }) {
 
     window.addEventListener('resize', showButton);
 
+    const toggleDropdown = () => setDropdown(!dropdown);
     const handleLogout = async () => {
         try {
             await logout();
             setDropdown(false);
         } catch (error) {
-            console.error("Failed to log out:", error);
+            console.error('Failed to log out:', error);
+            alert('Failed to log out. Please try again.');
         }
     };
 
@@ -48,7 +50,7 @@ function Navbar({ isDisabled }) {
             <nav className={`navbar ${isDisabled ? 'navbar-disabled' : ''}`}>
                 <div className='navbar-container'>
                     <Link to="/" className='navbar-logo' onClick={closeMobileMenu}>
-                        TRVL <i className='fab fa-typo3' />
+                        BiteMark <i className='fas fa-drumstick-bite' />
                     </Link>
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? ' fas fa-times' : 'fas fa-bars'} />
@@ -69,8 +71,8 @@ function Navbar({ isDisabled }) {
                         {currentUser ? (
                             <div className='user-menu'>
                                 <button 
-                                    className='username-btn'
-                                    onClick={() => setDropdown(!dropdown)}
+                                    className='common-button username-btn'
+                                    onClick={toggleDropdown}
                                 >
                                     {username}
                                 </button>
@@ -79,11 +81,15 @@ function Navbar({ isDisabled }) {
                                     <div className='dropdown-menu'>
                                         <Link 
                                             to='/settings'
+                                            className='common-button'
                                             onClick={() => setDropdown(false)}
                                         >
                                             Settings
                                         </Link>
-                                        <button onClick={handleLogout}>
+                                        <button 
+                                            className='common-button'
+                                            onClick={handleLogout}
+                                        >
                                             Logout
                                         </button>
                                     </div>

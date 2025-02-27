@@ -1,7 +1,4 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { auth, db } from '../utils/firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -14,36 +11,68 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // Get additional user data from Firestore
-                const userDoc = await getDoc(doc(db, "users", user.uid));
-                const userData = userDoc.data();
-                setCurrentUser({
-                    ...user,
-                    username: userData?.username
+        const checkAuthStatus = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/status', {
+                    method: 'GET',
+                    credentials: 'include'
                 });
-            } else {
+                
+                if (response.ok) {
+                    const userData = await response.json();
+                    setCurrentUser(userData);
+                } else {
+                    // Handle non-200 responses
+                    setCurrentUser(null);
+                    console.log('Not authenticated');
+                }
+            } catch (error) {
+                console.error('Auth status check failed:', error);
                 setCurrentUser(null);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
-        });
+        };
 
-        return unsubscribe;
+        checkAuthStatus();
     }, []);
 
     const logout = async () => {
         try {
-            await signOut(auth);
+            console.log('Initiating logout...'); // Debug log
+            const response = await fetch('http://localhost:5000/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log('Logout response:', response); // Debug log
+
+            if (response.ok) {
+                setCurrentUser(null);
+                console.log('Logout successful'); // Debug log
+                return true;
+            } else {
+                console.error('Logout failed with status:', response.status); // Debug log
+                throw new Error('Logout failed');
+            }
         } catch (error) {
+            console.error('Logout error:', error);
             throw error;
         }
+    };
+
+    const updateCurrentUser = (userData) => {
+        setCurrentUser(userData);
     };
 
     const value = {
         currentUser,
         loading,
-        logout
+        logout,
+        updateCurrentUser
     };
 
     return (

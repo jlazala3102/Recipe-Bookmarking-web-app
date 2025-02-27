@@ -164,3 +164,67 @@
     transition: 250ms;
   }
 }
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+  position: absolute;
+  background-color: #ffffff00; /* Darker background for better contrast */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow for depth */
+  z-index: 1000; /* Ensure it appears above other elements */
+  margin-top: -50px; /* Move the dropdown up slightly */
+  right: 30px; /* Move the dropdown left to be closer to the button */
+  width: 150px; /* Fixed width for consistency */
+  padding: 10px 0; /* Padding for the dropdown */
+}
+
+/* Dropdown Item Styles */
+.dropdown-item {
+  color: #fff; /* White text for contrast */
+  padding: 10px 15px; /* Padding for better click area */
+  text-decoration: none; /* Remove underline */
+  text-align: center; /* Align text to the left */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 20px; /* Font size */
+  border: none; /* Remove border */
+  background: none; /* No background */
+}
+
+/* Hover Effect for Dropdown Items */
+.dropdown-item:hover {
+  background-color: #555; /* Change background on hover */
+  color: #fff; /* Keep text color white on hover */
+}
+
+/* Additional Styling for the Username Button */
+.username-btn {
+  background: none; /* No background */
+  border: none; /* No border */
+  color: #fff; /* White text */
+  font-size: 20px; /* Font size */
+  cursor: pointer; /* Pointer cursor */
+  padding: 10px; /* Padding for better click area */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.username-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  border-radius: 4px; /* Slightly rounded corners on hover */
+}
+
+/* Common button styles */
+.common-button {
+    background: none; /* No background */
+    border: none; /* No border */
+    color: #fff; /* White text */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    padding: 10px; /* Padding for better click area */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.common-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+    border-radius: 4px; /* Slightly rounded corners on hover */
+}

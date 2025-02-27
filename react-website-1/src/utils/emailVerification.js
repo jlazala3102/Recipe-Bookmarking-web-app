@@ -1,5 +1,4 @@
-import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { saveVerificationCode as saveVerificationCodeDB } from './mongodb';
 
 // Generate a random 6-digit code
 export const generateVerificationCode = () => {
@@ -7,16 +6,36 @@ export const generateVerificationCode = () => {
     return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-// Save verification code to a simulated storage (console log for testing)
+// Save verification code
 export const saveVerificationCode = async (email, code) => {
-    // Simulate saving the verification code (you can implement this with Firestore if needed)
-    console.log(`Saving verification code for ${email}: ${code}`); // Log the code for testing
+    try {
+        await saveVerificationCodeDB(email, code);
+        console.log(`Verification code saved for ${email}: ${code}`); // For debugging
+    } catch (error) {
+        console.error('Error saving verification code:', error);
+        throw error;
+    }
 };
 
 // Check if verification code is correct
 export const verifyCode = async (email, code) => {
-    // Simulate verifying the code (you can implement this with Firestore if needed)
-    // For testing, let's assume the code is always valid
-    console.log(`Verifying code for ${email}: ${code}`); // Log the verification attempt
-    return true; // Change this logic as needed
+    try {
+        const response = await fetch('/api/auth/verify-code', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, code }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Verification failed');
+        }
+
+        const data = await response.json();
+        return data.isValid;
+    } catch (error) {
+        console.error('Error verifying code:', error);
+        throw error;
+    }
 }; 

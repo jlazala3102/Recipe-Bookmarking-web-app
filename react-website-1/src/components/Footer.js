@@ -8,7 +8,7 @@ function Footer() {
         <div className='footer-container'>
             <section className="footer-subscription">
                 <p className="footer-subscription-heading">
-                    Join the Adventure newsletter to receive our best vacation deals
+                    Join our Recipe newsletter to receive the latest recipes and cooking tips!
                 </p>
                 <p className="footer-subscription-text">
                     You can unsubscribe at any time.
@@ -28,34 +28,32 @@ function Footer() {
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
                         <h2>About Us</h2>
-                        <Link to='/sign-up'>How it works</Link>
-                        <Link to='/'>Testimonials</Link>
-                        <Link to='/'>Careers</Link>
-                        <Link to='/'>Investors</Link>
-                        <Link to='/'>Terms of Service</Link>
+                        <Link to='/about'>Our Story</Link>
+                        <Link to='/recipes'>Popular Recipes</Link>
+                        <Link to='/blog'>Cooking Blog</Link>
+                        <Link to='/contact'>Contact Us</Link>
                     </div>
                     <div className="footer-link-items">
-                        <h2>Contact Us</h2>
-                        <Link to='/'>Contact</Link>
-                        <Link to='/'>Support</Link>
-                        <Link to='/'>Destinations</Link>
-                        <Link to='/'>Sponsorship</Link>
+                        <h2>Resources</h2>
+                        <Link to='/recipes'>Recipe Categories</Link>
+                        <Link to='/meal-planning'>Meal Planning</Link>
+                        <Link to='/cooking-tips'>Cooking Tips</Link>
+                        <Link to='/faq'>FAQs</Link>
                     </div>
                 </div>
                 <div className="footer-link-wrapper">
                     <div className="footer-link-items">
-                        <h2>Videos</h2>
-                        <Link to='/'>Submit Videos</Link>
-                        <Link to='/'>Ambassadors</Link>
-                        <Link to='/'>Agency</Link>
-                        <Link to='/'>Influencer</Link>
-                    </div>
-                    <div className="footer-link-items">
-                        <h2>Social Media</h2>
+                        <h2>Follow Us</h2>
                         <Link to='/'>Instagram</Link>
                         <Link to='/'>Facebook</Link>
-                        <Link to='/'>Youtube</Link>
-                        <Link to='/'>Twitter</Link>
+                        <Link to='/'>Pinterest</Link>
+                        <Link to='/'>YouTube</Link>
+                    </div>
+                    <div className="footer-link-items">
+                        <h2>Get Involved</h2>
+                        <Link to='/submit-recipe'>Submit a Recipe</Link>
+                        <Link to='/collaborate'>Collaborate with Us</Link>
+                        <Link to='/sponsorship'>Sponsorship Opportunities</Link>
                     </div>
                 </div>
             </div>
@@ -63,48 +61,48 @@ function Footer() {
                 <div className="social-media-wrap">
                     <div className="footer-logo">
                         <Link to='/' className='social-logo'>
-                            TRVL <i className='fab fa-typo3' />
+                            BiteMark <i className='fas fa-drumstick-bite' />
                         </Link>
                     </div>
                     <small className="website-rights">
-                        TRVL © 2024
+                    BiteMark © 2024-2025
                     </small>
                     <div className="social-icons">
-                        <Link class="social-icon-link facebook"
+                        <Link className="social-icon-link facebook"
                             to='/'
                             target='_blank'
                             aria-label='Facebook'>
-                            <i class="fab fa-facebook-f"></i>
+                            <i className="fab fa-facebook-f"></i>
                         </Link>
-                        <Link class="social-icon-link instagram"
+                        <Link className="social-icon-link instagram"
                             to='/'
                             target='_blank'
                             aria-label='Instagram'>
-                            <i class="fab fa-instagram"></i>
+                            <i className="fab fa-instagram"></i>
                         </Link>
                         <Link
-                            class='social-icon-link youtube'
+                            className='social-icon-link youtube'
                             to='/'
                             target='_blank'
                             aria-label='Youtube'
                         >
-                            <i class='fab fa-youtube' />
+                            <i className='fab fa-youtube' />
                         </Link>
                         <Link
-                            class='social-icon-link twitter'
+                            className='social-icon-link twitter'
                             to='/'
                             target='_blank'
                             aria-label='Twitter'
                         >
-                            <i class='fab fa-twitter' />
+                            <i className='fab fa-twitter' />
                         </Link>
                         <Link
-                            class='social-icon-link linkedin'
+                            className='social-icon-link linkedin'
                             to='/'
                             target='_blank'
                             aria-label='LinkedIn'
                         >
-                            <i class='fab fa-linkedin' />
+                            <i className='fab fa-linkedin' />
                         </Link>
                     </div>
                 </div>

@@ -37,3 +37,34 @@ export const fetchRecipeDetails = async (id) => {
     return null;
   }
 };
+
+// Combined search function for both ingredients and recipe names
+export const searchRecipes = async (query) => {
+  try {
+    const response = await fetch(`${BASE_URL}/recipes/complexSearch?query=${query}&number=10&apiKey=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch recipes');
+    }
+    const data = await response.json();
+    return data.results; // Return only the results array
+  } catch (error) {
+    console.error('Error searching recipes:', error);
+    throw error;
+  }
+};
+
+// New function to search recipes by cuisine and recipe name
+export const searchRecipesByCuisine = async (query) => {
+    const [recipeName, cuisine] = query.split(',').map(part => part.trim());
+    try {
+        const response = await fetch(`${BASE_URL}/recipes/complexSearch?query=${recipeName}&cuisine=${cuisine}&number=10&apiKey=${API_KEY}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch recipes');
+        }
+        const data = await response.json();
+        return data.results; // Return only the results array
+    } catch (error) {
+        console.error('Error searching recipes by cuisine:', error);
+        throw error;
+    }
+};
