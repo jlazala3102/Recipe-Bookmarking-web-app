@@ -13,14 +13,24 @@
     border: 1px solid #ccc; /* Add a border */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.2s; /* Smooth hover effect */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
 }
 
 .recipe-card:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    background-color: #f9f9f9; /* Optional: Change background color on hover */
 }
 
 .recipe-title {
     cursor: pointer; /* Pointer cursor for clickable titles */
     color: #333; /* Darker text color */
+}
+
+.bookmark-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red; /* Change color as needed */
+    font-size: 1.5em; /* Adjust size as needed */
 } 

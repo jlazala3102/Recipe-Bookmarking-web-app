@@ -168,14 +168,16 @@
 /* Dropdown Menu Styles */
 .dropdown-menu {
   position: absolute;
-  background-color: #ffffff00; /* Darker background for better contrast */
+  background-color: rgba(28, 27, 27, 0.95); /* Match the navbar background */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Softer shadow for depth */
   z-index: 1000; /* Ensure it appears above other elements */
-  margin-top: -50px; /* Move the dropdown up slightly */
-  right: 30px; /* Move the dropdown left to be closer to the button */
-  width: 150px; /* Fixed width for consistency */
-  padding: 10px 0; /* Padding for the dropdown */
+  margin-top: 15px; /* Space between the button and dropdown */
+  right: 90px; /* Move the dropdown left to be closer to the button */
+  width: 200px; /* Fixed width for consistency */
+  padding: 5px 0; /* Padding for the dropdown */
+  text-align: center;
+  text-decoration: none;
 }
 
 /* Dropdown Item Styles */
@@ -186,14 +188,14 @@
   text-align: center; /* Align text to the left */
   transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
   cursor: pointer; /* Pointer cursor */
-  font-size: 20px; /* Font size */
+  font-size: 16px; /* Font size */
   border: none; /* Remove border */
   background: none; /* No background */
 }
 
 /* Hover Effect for Dropdown Items */
 .dropdown-item:hover {
-  background-color: #555; /* Change background on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Change background on hover */
   color: #fff; /* Keep text color white on hover */
 }
 
@@ -202,7 +204,7 @@
   background: none; /* No background */
   border: none; /* No border */
   color: #fff; /* White text */
-  font-size: 20px; /* Font size */
+  font-size: 25px; /* Font size */
   cursor: pointer; /* Pointer cursor */
   padding: 10px; /* Padding for better click area */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
@@ -218,7 +220,7 @@
     background: none; /* No background */
     border: none; /* No border */
     color: #fff; /* White text */
-    font-size: 16px; /* Font size */
+    font-size: 18px; /* Font size */
     cursor: pointer; /* Pointer cursor */
     padding: 10px; /* Padding for better click area */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */

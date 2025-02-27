@@ -7,6 +7,7 @@ import SignUp from './components/pages/SignUp';
 import RecipePage from './components/pages/RecipePage';
 import RecipeDetailPage from './components/pages/RecipeDetailPage';
 import Settings from './components/pages/Settings';
+import BookmarksPage from './components/pages/BookmarksPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/recipe/:id" element={<RecipeDetailPage />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/bookmarks' element={<BookmarksPage />} />
         </Routes>
       </Router>
     </AuthProvider>

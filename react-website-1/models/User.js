@@ -30,10 +30,11 @@ const userSchema = new mongoose.Schema({
     profilePicture: {  // Optional: store Google profile picture URL
         type: String
     },
-    verificationCode: {
-        code: String,
-        expiresAt: Date
-    }
+    bookmarks: [{
+        _id: { type: String, required: true }, // Recipe ID
+        title: { type: String, required: true }, // Recipe title
+        image: { type: String, required: true }  // Recipe image URL
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema); 

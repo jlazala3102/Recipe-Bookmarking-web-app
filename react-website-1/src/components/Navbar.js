@@ -86,6 +86,13 @@ function Navbar({ isDisabled }) {
                                         >
                                             Settings
                                         </Link>
+                                        <Link 
+                                            to='/bookmarks'
+                                            className='common-button'
+                                            onClick={() => setDropdown(false)}
+                                        >
+                                            Bookmarks
+                                        </Link>
                                         <button 
                                             className='common-button'
                                             onClick={handleLogout}

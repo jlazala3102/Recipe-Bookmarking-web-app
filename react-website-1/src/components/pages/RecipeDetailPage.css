@@ -19,4 +19,39 @@
 .recipe-img {
     max-width: 100%; /* Responsive image */
     height: auto; /* Maintain aspect ratio */
+}
+
+.bookmark-container {
+    position: relative; /* Position relative for tooltip */
+    display: inline-block; /* Inline block for tooltip positioning */
+}
+
+.tooltip {
+    visibility: hidden; /* Hidden by default */
+    width: 80px; /* Width of the tooltip */
+    background-color: black; /* Background color */
+    color: #fff; /* Text color */
+    text-align: center; /* Center text */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px; /* Padding */
+    position: absolute; /* Position absolute */
+    z-index: 1; /* On top of other elements */
+    bottom: 125%; /* Position above the button */
+    left: 50%; /* Center horizontally */
+    margin-left: -40px; /* Adjust for centering */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s; /* Fade effect */
+}
+
+.bookmark-button:hover + .tooltip {
+    visibility: visible; /* Show tooltip on hover */
+    opacity: 1; /* Fade in */
+}
+
+.bookmark-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red; /* Change color as needed */
+    font-size: 1.5em; /* Adjust size as needed */
 } 
