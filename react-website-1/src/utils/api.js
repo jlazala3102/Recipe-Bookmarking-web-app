@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Base URL for Spoonacular API
 const BASE_URL = "https://api.spoonacular.com";
-const API_KEY = "67dfd063e7ac40639cd72f8f6edca299";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 // Fetch recipes by ingredients
 export const fetchRecipesByIngredients = async (ingredients) => {
