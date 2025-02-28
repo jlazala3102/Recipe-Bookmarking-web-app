@@ -34,8 +34,7 @@ This project showcases my development of a full-stack web application that integ
    ```
 2. Navigate to the project directory:
    ```bash
-   cd Recipe-Bookmarking-web-app
-   cd react-website-1
+   cd Recipe-Bookmarking-web-app/react-website-1
    ```
 3. Install the dependencies:
    ```bash
