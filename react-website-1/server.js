@@ -13,7 +13,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000', // Your React app URL
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 
@@ -44,8 +44,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/react-web
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Remove the User schema and model definition from here
-// Instead, import the User model
+//User model
 const User = require('./models/User');
 
 // API routes
